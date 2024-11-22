@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela de Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #ffe6f2;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .login-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #d147a3;
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 20px 0;
+            background-color: #ff6699;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #ff4d88;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .button:active {
+            background-color: #ff3366;
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .error-message {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="login-container">
+    <h2>Entrar na sua conta</h2>
+    <form id="loginForm" onsubmit="return validateLogin()">
+        <input type="text" id="username" placeholder="Usuário" required>
+        <input type="password" id="password" placeholder="Senha" required>
+        <button type="submit" class="button">Login</button>
+    </form>
+    <p class="error-message" id="errorMessage"></p>
+</div>
+
+<script>
+    // Função para validar o login
+    function validateLogin() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+        const errorMessage = document.getElementById('errorMessage');
+
+        // Definir o nome de usuário e senha esperados
+        const expectedUsername = 'juciele';  // Exemplo
+        const expectedPassword = 'senha123';  // Exemplo
+
+        if (username === expectedUsername && password === expectedPassword) {
+            // Salvar no localStorage para verificar se o login foi bem-sucedido
+            localStorage.setItem('loggedIn', 'true');
+            // Redirecionar para a página de gestão de cursos
+            window.location.href = 'index.html'; // Redireciona para a tela inicial
+            return false; // Impede o envio do formulário
+        } else {
+            errorMessage.textContent = 'Usuário ou senha inválidos!';
+            return false; // Impede o envio do formulário
+        }
+    }
+</script>
+
+</body>
+</html>

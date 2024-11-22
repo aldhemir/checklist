@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão de Cursos</title>
+  <style>
+    /* Estilos para o layout */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffe6f2;
+    }
+
+    header {
+      background-color: #ff7f7f;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .nav-left {
+      display: flex;
+      justify-content: flex-start;
+      margin: 1rem;
+    }
+
+    .nav-right {
+      display: flex;
+      justify-content: center;
+      margin: 1rem;
+    }
+
+    .nav-button {
+      background-color: #ff7f7f;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 0 5px;
+      font-size: 1em;
+    }
+
+    .nav-button.active {
+      background-color: #ff6666;
+    }
+
+    main {
+      margin: 2rem auto;
+      width: 95%;
+      max-width: 1400px;
+    }
+
+    .tab-content {
+      display: none;
+      margin-top: 2rem;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .table-container {
+      overflow-x: auto;
+      background-color: white;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th, table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+
+    table th {
+      background-color: #ff7f7f;
+      color: white;
+    }
+
+    button {
+      background-color: #ff7f7f;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 1rem 0;
+    }
+
+    button:hover {
+      background-color: #cc6699;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #ff7f7f;
+      color: white;
+    }
+
+    @media (max-width: 768px) {
+      .nav-button {
+        padding: 8px 16px;
+      }
+
+      .tab-content {
+        display: none;
+      }
+
+      .tab-content.active {
+        display: block;
+      }
+
+      .nav-button {
+        margin: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Gestão de Cursos</h1>
+  </header>
+
+  <div class="nav-left">
+    <a href="index.html" class="nav-button">Início</a>
+    <a href="Checklist.html" class="nav-button">Checklists</a>
+  </div>
+
+  <div class="nav-right">
+    <button class="nav-button" onclick="showTab('tab1')">Lash Lifiting</button>
+    <button class="nav-button" onclick="showTab('tab2')">Beauty Nails</button>
+    <button class="nav-button" onclick="showTab('tab3')">Cílios Intense</button>
+    <button class="nav-button" onclick="showTab('tab4')">Design</button>
+  </div>
+
+  <div class="button-container">
+    <a href="cadastrarCurso.html" class="nav-button">Adicionar Curso</a>
+    <button class="nav-button" onclick="exportData()">Exportar Dados</button>
+  </div>
+
+  <main>
+    <div class="tab-content" id="tab1">
+      <div class="table-container">
+        <table id="tab1-data">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Telefone</th>
+              <th>Data Nascimento</th>
+              <th>CPF</th>
+              <th>E-mail</th>
+              <th>Curso</th>
+              <th>Data Curso</th>
+              <th>Sinal</th>
+              <th>Valor</th>
+              <th>Presente</th>
+              <th>Vendedora</th>
+              <th>Formas de Pagamentos</th>
+              <th>OBSERVAÇÃO</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab2">
+      <div class="table-container">
+        <table id="tab2-data">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Telefone</th>
+              <th>Data Nascimento</th>
+              <th>CPF</th>
+              <th>E-mail</th>
+              <th>Curso</th>
+              <th>Data Curso</th>
+              <th>Sinal</th>
+              <th>Valor</th>
+              <th>Presente</th>
+              <th>Vendedora</th>
+              <th>Formas de Pagamentos</th>
+              <th>OBSERVAÇÃO</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab3">
+      <div class="table-container">
+        <table id="tab3-data">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Telefone</th>
+              <th>Data Nascimento</th>
+              <th>CPF</th>
+              <th>E-mail</th>
+              <th>Curso</th>
+              <th>Data Curso</th>
+              <th>Sinal</th>
+              <th>Valor</th>
+              <th>Presente</th>
+              <th>Vendedora</th>
+              <th>Formas de Pagamentos</th>
+              <th>OBSERVAÇÃO</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="tab-content" id="tab4">
+      <div class="table-container">
+        <table id="tab4-data">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Sobrenome</th>
+              <th>Telefone</th>
+              <th>Data Nascimento</th>
+              <th>CPF</th>
+              <th>E-mail</th>
+              <th>Curso</th>
+              <th>Data Curso</th>
+              <th>Sinal</th>
+              <th>Valor</th>
+              <th>Presente</th>
+              <th>Vendedora</th>
+              <th>Formas de Pagamentos</th>
+              <th>OBSERVAÇÃO</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    // Função para exibir a aba correta
+    function showTab(tab) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tabContent => tabContent.classList.remove('active'));
+
+      document.getElementById(tab).classList.add('active');
+      loadData(tab);
+      localStorage.setItem('activeTab', tab); // Salva a aba ativa no localStorage
+    }
+
+    // Carregar dados de cada aba no localStorage
+    function loadData(tab) {
+      const data = JSON.parse(localStorage.getItem('cursoData')) || {};
+      const tbody = document.querySelector(`#${tab} tbody`);
+      tbody.innerHTML = '';
+
+      if (!data[tab] || data[tab].length === 0) {
+        const noDataRow = document.createElement('tr');
+        noDataRow.innerHTML = `<td colspan="14" style="text-align: center;">Nenhum dado encontrado</td>`;
+        tbody.appendChild(noDataRow);
+        return;
+      }
+
+      data[tab].forEach((curso, index) => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td>${curso.nome}</td>
+          <td>${curso.sobrenome}</td>
+          <td>${curso.telefone}</td>
+          <td>${curso.dataNascimento}</td>
+          <td>${curso.cpf}</td>
+          <td>${curso.email}</td>
+          <td>${curso.curso}</td>
+          <td>${curso.dataCurso}</td>
+          <td>${curso.sinal}</td>
+          <td>${curso.valor}</td>
+          <td>${curso.presente}</td>
+          <td>${curso.vendedora}</td>
+          <td>${curso.formasPagamento}</td>
+          <td>${curso.observacao}</td>
+          <td>
+            <button onclick="editCourse(${index}, '${tab}')">Editar</button>
+            <button onclick="deleteCourse(${index}, '${tab}')">Excluir</button>
+          </td>
+        `;
+        tbody.appendChild(row);
+      });
+    }
+
+    // Função para editar curso
+    function editCourse(index, tab) {
+      const data = JSON.parse(localStorage.getItem('cursoData')) || {};
+      const curso = data[tab][index];
+      localStorage.setItem('editCourse', JSON.stringify(curso));
+      alert('Editar Curso: ' + JSON.stringify(curso));
+    }
+
+    // Função para excluir curso
+    function deleteCourse(index, tab) {
+      const data = JSON.parse(localStorage.getItem('cursoData')) || {};
+      data[tab].splice(index, 1);
+      localStorage.setItem('cursoData', JSON.stringify(data));
+      loadData(tab); // Recarregar a tabela
+    }
+
+    // Função para exportar dados como CSV
+    function exportData() {
+      const data = JSON.parse(localStorage.getItem('cursoData')) || {};
+      let csv = 'Nome,Sobrenome,Telefone,Data Nascimento,CPF,E-mail,Curso,Data Curso,Sinal,Valor,Presente,Vendedora,Formas de Pagamentos,OBSERVAÇÃO\n';
+
+      for (let tab in data) {
+        data[tab].forEach(curso => {
+          csv += `"${curso.nome}","${curso.sobrenome}","${curso.telefone}","${curso.dataNascimento}","${curso.cpf}","${curso.email}","${curso.curso}","${curso.dataCurso}","${curso.sinal}","${curso.valor}","${curso.presente}","${curso.vendedora}","${curso.formasPagamento}","${curso.observacao}"\n`;
+        });
+      }
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'cursoData.csv';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+    }
+
+    // Carregar a última aba ativa ao recarregar a página
+    window.onload = function() {
+      const activeTab = localStorage.getItem('activeTab') || 'tab1';
+      showTab(activeTab);
+    }
+  </script>
+</body>
+</html>

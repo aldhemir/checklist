@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastrar Novo Curso</title>
+  <style>
+    /* Estilo global */
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #ff7f7f; /* Tom de rosa */
+      color: white;
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 2rem;
+      border-bottom: 5px solid #ff7f7f;
+    }
+
+    .form-container {
+      width: 90%;
+      max-width: 600px;
+      margin: 2rem auto;
+      background-color: white;
+      padding: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+      border: 1px solid #ddd;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+      color: #555;
+    }
+
+    input[type="text"], input[type="email"], input[type="date"], input[type="number"], textarea {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+      box-sizing: border-box;
+    }
+
+    input[type="text"]:focus, input[type="email"]:focus, input[type="date"]:focus, input[type="number"]:focus, textarea:focus {
+      border-color: #ff7f7f;
+      outline: none;
+    }
+
+    textarea {
+      height: 150px;
+      resize: vertical;
+    }
+
+    button {
+      background-color: #ff7f7f;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #ff7f7f;
+    }
+
+    button:focus {
+      outline: none;
+    }
+
+    .form-container .form-footer {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .form-container .form-footer a {
+      color: #ff66b2;
+      text-decoration: none;
+    }
+
+    .form-container .form-footer a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Cadastro de Curso</h1>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <form id="cursoForm">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required>
+
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" id="sobrenome" name="sobrenome" required>
+
+        <label for="telefone">Telefone:</label>
+        <input type="text" id="telefone" name="telefone" required>
+
+        <label for="dataNascimento">Data de Nascimento:</label>
+        <input type="date" id="dataNascimento" name="dataNascimento" required>
+
+        <label for="cpf">CPF:</label>
+        <input type="text" id="cpf" name="cpf" required>
+
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="curso">Curso:</label>
+        <input type="text" id="curso" name="curso" required>
+
+        <label for="dataCurso">Data do Curso:</label>
+        <input type="date" id="dataCurso" name="dataCurso" required>
+
+        <label for="sinal">Sinal:</label>
+        <input type="number" id="sinal" name="sinal" required>
+
+        <label for="valor">Valor:</label>
+        <input type="number" id="valor" name="valor" required>
+
+        <label for="presente">Presente:</label>
+        <input type="text" id="presente" name="presente">
+
+        <label for="vendedora">Vendedora:</label>
+        <input type="text" id="vendedora" name="vendedora">
+
+        <label for="pagamentos">Formas de Pagamento:</label>
+        <input type="text" id="pagamentos" name="pagamentos">
+
+        <label for="observacao">Observação:</label>
+        <textarea id="observacao" name="observacao"></textarea>
+
+        <button type="submit">Salvar</button>
+      </form>
+
+      <div class="form-footer">
+        <a href="cursos.html">Voltar para a lista de cursos</a>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    document.getElementById('cursoForm').addEventListener('submit', function(event) {
+      event.preventDefault();  // Impede o envio do formulário
+
+      // Coleta os dados do formulário
+      const cursoData = {
+        nome: document.getElementById('nome').value,
+        sobrenome: document.getElementById('sobrenome').value,
+        telefone: document.getElementById('telefone').value,
+        dataNascimento: document.getElementById('dataNascimento').value,
+        cpf: document.getElementById('cpf').value,
+        email: document.getElementById('email').value,
+        curso: document.getElementById('curso').value,
+        dataCurso: document.getElementById('dataCurso').value,
+        sinal: document.getElementById('sinal').value,
+        valor: document.getElementById('valor').value,
+        presente: document.getElementById('presente').value,
+        vendedora: document.getElementById('vendedora').value,
+        pagamentos: document.getElementById('pagamentos').value,
+        observacao: document.getElementById('observacao').value
+      };
+
+      // Verifica a aba em que o usuário está
+      const urlParams = new URLSearchParams(window.location.search);
+      const tab = urlParams.get('tab') || 'tab1';  // Usa tab1 como padrão
+
+      let data = JSON.parse(localStorage.getItem('cursoData')) || { tab1: [], tab2: [], tab3: [], tab4: [] };
+      data[tab].push(cursoData);
+      localStorage.setItem('cursoData', JSON.stringify(data));
+
+      // Redireciona para a página principal após salvar
+      window.location.href = 'cursos.html';
+    });
+  </script>
+</body>
+</html>

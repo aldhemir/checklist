@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela Inicial - Estética de Beleza</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #ffe6f2;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+
+            /* Configuração da imagem de fundo */
+            background-image: url('image.png');
+            background-size: cover; /* Ajusta a imagem para cobrir toda a tela */
+            background-position: center; /* Centraliza a imagem */
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 30px;
+            border-radius: 50%; /* Tornando o contêiner circular */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 80%; /* Largura relativa */
+            max-width: 400px;
+            height: 80%; /* Altura relativa */
+            max-height: 400px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            color: #d147a3;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 12px 30px;
+            margin: 10px;
+            background-color: #ff6699;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .button:hover {
+            background-color: #ff4d88;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+            transform: translateY(-3px);
+        }
+
+        .button:active {
+            background-color: #ff3366;
+            transform: translateY(0);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Bem-vindo Juciele Gomes</h1>
+    <a href="Checklist.html" class="button">Checklist</a>
+    <a href="cursos.html" class="button">Gestão de Cursos</a>
+    
+    <!-- Botão para voltar à tela de login -->
+    <a href="login.html" class="button">Voltar ao Login</a>
+</div>
+
+<script>
+    // Verificar se o usuário está logado
+    if (!localStorage.getItem('loggedIn')) {
+        window.location.href = 'login.html'; // Se não estiver logado, redireciona para a tela de login
+    }
+</script>
+
+</body>
+</html>

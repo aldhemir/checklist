@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Editar ou Adicionar Dados</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #ffe6f2;
+    }
+
+    main {
+      margin: 2rem auto;
+      width: 95%;
+      max-width: 600px;
+      background-color: white;
+      padding: 1rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+      text-align: center;
+      color: #ff7f7f;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      padding: 0.5rem;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      background-color: #ff7f7f;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 48%;
+    }
+
+    button:hover {
+      background-color: #cc6699;
+    }
+
+    button.cancel {
+      background-color: #ccc;
+    }
+
+    button.cancel:hover {
+      background-color: #999;
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Editar ou Adicionar Registro</h1>
+    <form id="data-form">
+      <label>Nome: <input type="text" id="nome" required></label>
+      <label>Sobrenome: <input type="text" id="sobrenome" required></label>
+      <label>Telefone: <input type="text" id="telefone"></label>
+      <label>Data de Nascimento: <input type="date" id="dataNascimento"></label>
+      <label>CPF: <input type="text" id="cpf"></label>
+      <label>E-mail: <input type="email" id="email"></label>
+      <label>Curso: <input type="text" id="curso"></label>
+      <label>Data do Curso: <input type="date" id="dataCurso"></label>
+      <label>Sinal: <input type="text" id="sinal"></label>
+      <label>Valor: <input type="text" id="valor"></label>
+      <label>Presente: <input type="text" id="presente"></label>
+      <label>Vendedora: <input type="text" id="vendedora"></label>
+      <label>Formas de Pagamento: <input type="text" id="formasPagamento"></label>
+      <label>Observação: <textarea id="observacao"></textarea></label>
+      <div class="button-container">
+        <button type="submit">Salvar</button>
+        <button type="button" class="cancel" id="cancel-button">Cancelar</button>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const courseIndex = params.get("courseIndex");
+
+    // Função para carregar dados específicos para cada curso
+    const loadData = (courseIndex) => {
+      const storedData = localStorage.getItem(`gestaoCursosCurso${courseIndex}`);
+      return storedData ? JSON.parse(storedData) : [];
+    };
+
+    const saveData = (courseIndex, data) => {
+      localStorage.setItem(`gestaoCursosCurso${courseIndex}`, JSON.stringify(data));
+    };
+
+    const data = loadData(courseIndex);
+
+    const form = document.getElementById("data-form");
+
+    // Preencher o formulário no caso de edição
+    if (params.get("index") !== null) {
+      const index = params.get("index");
+      const item = data[index];
+      document.getElementById("nome").value = item.nome;
+      document.getElementById("sobrenome").value = item.sobrenome;
+      document.getElementById("telefone").value = item.telefone;
+      document.getElementById("dataNascimento").value = item.dataNascimento;
+      document.getElementById("cpf").value = item.cpf;
+      document.getElementById("email").value = item.email;
+      document.getElementById("curso").value = item.curso;
+      document.getElementById("dataCurso").value = item.dataCurso;
+      document.getElementById("sinal").value = item.sinal;
+      document.getElementById("valor").value = item.valor;
+      document.getElementById("presente").value = item.presente;
+      document.getElementById("vendedora").value = item.vendedora;
+      document.getElementById("formasPagamento").value = item.formasPagamento;
+      document.getElementById("observacao").value = item.observacao;
+    }
+
+    // Salvar dados
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const newItem = {
+        nome: document.getElementById("nome").value,
+        sobrenome: document.getElementById("sobrenome").value,
+        telefone: document.getElementById("telefone").value,
+        dataNascimento: document.getElementById("dataNascimento").value,
+        cpf: document.getElementById("cpf").value,
+        email: document.getElementById("email").value,
+        curso: document.getElementById("curso").value,
+        dataCurso: document.getElementById("dataCurso").value,
+        sinal: document.getElementById("sinal").value,
+        valor: document.getElementById("valor").value,
+        presente: document.getElementById("presente").value,
+        vendedora: document.getElementById("vendedora").value,
+        formasPagamento: document.getElementById("formasPagamento").value,
+        observacao: document.getElementById("observacao").value,
+      };
+
+      // Se index for nulo, estamos adicionando um novo item, se não, estamos editando
+      if (params.get("index") !== null) {
+        data[params.get("index")] = newItem;
+      } else {
+        data.push(newItem);
+      }
+
+      saveData(courseIndex, data);
+      window.location.href = `cursos.html?courseIndex=${courseIndex}`;
+    });
+
+    // Cancelar
+    const cancelButton = document.getElementById("cancel-button");
+    cancelButton.addEventListener("click", () => {
+      window.location.href = `cursos.html?courseIndex=${courseIndex}`;
+    });
+  </script>
+</body>
+</html>
